@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
+from django.contrib.auth.models import User
 
 
 class Contact(models.Model):
@@ -31,7 +32,7 @@ class Category(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     creator = models.ForeignKey(
-        "accounts.UserProfile", related_name="categories", on_delete=models.CASCADE
+        User, related_name="categories", on_delete=models.CASCADE
     )
 
     def __str__(self):
@@ -69,9 +70,7 @@ class Message(models.Model):
         Category, related_name="messages", on_delete=models.CASCADE
     )
     created_at = models.DateTimeField(auto_now_add=True)
-    sender = models.ForeignKey(
-        "accounts.UserProfile", related_name="messages", on_delete=models.CASCADE
-    )
+    sender = models.ForeignKey(User, related_name="messages", on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.content[:30]} ..."
