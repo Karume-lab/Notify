@@ -8,12 +8,10 @@
     </head>
     <body class="flex flex-col min-h-screen">
         {% include 'components/header.html' %}
-        <div class="flex flex-1">
-            {% include 'components/sidebar.html' %}
-            <main class="p-4 sm:ml-64 mt-14">
-                {% block body %}{% endblock body %}
-            </main>
-        </div>
+        {% include 'components/sidebar.html' %}
+        <main class="p-4 sm:ml-64 mt-14">
+            {% block body %}{% endblock body %}
+        </main>
         {% include 'components/footer.html' %}
     </body>
 </html>

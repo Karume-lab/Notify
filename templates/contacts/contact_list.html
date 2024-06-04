@@ -3,11 +3,66 @@
 {% block title %}Contact List{% endblock %}
 
 {% block body %}
-<h1>Contacts</h1>
+<!-- <h1>Contacts</h1>
 <ul>
     {% for contact in object_list %}
-        <li><a href="{% url 'core:contact-detail' contact.pk %}">{{ contact.first_name }} {{ contact.last_name }}</a></li>
+    <li>
+        <a href="{% url 'core:contact-detail' contact.pk %}">{{ contact.first_name }} {{ contact.last_name }}</a>
+    </li>
     {% endfor %}
 </ul>
-<a href="{% url 'core:contact-create' %}">Create Contact</a>
+<a href="{% url 'core:contact-create' %}">Create Contact</a> -->
+
+<div class="bg-gray-500 rounded-lg h-screen p-10">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Song
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Artist
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Year
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="px-6 py-4">
+                    The Sliding Mr. Bones (Next Stop, Pottersville)
+                </td>
+                <td class="px-6 py-4">
+                    Malcolm Lockyer
+                </td>
+                <td class="px-6 py-4">
+                    1961
+                </td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="px-6 py-4">
+                    Witchy Woman
+                </td>
+                <td class="px-6 py-4">
+                    The Eagles
+                </td>
+                <td class="px-6 py-4">
+                    1972
+                </td>
+            </tr>
+            <tr class="bg-white dark:bg-gray-800">
+                <td class="px-6 py-4">
+                    Shining Star
+                </td>
+                <td class="px-6 py-4">
+                    Earth, Wind, and Fire
+                </td>
+                <td class="px-6 py-4">
+                    1975
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 {% endblock %}
