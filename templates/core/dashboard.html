@@ -3,21 +3,19 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block body %}
+<h1>Welcome to your Dashboard</h1>
 <div>
-    <h1>Welcome to your Dashboard</h1>
     <div>
-        <div>
-            <h2>Categories</h2>
-            <p>{{ categories_count }}</p>
-        </div>
-        <div>
-            <h2>Contacts</h2>
-            <p>{{ contacts_count }}</p>
-        </div>
-        <div>
-            <h2>Messages</h2>
-            <p>{{ messages_count }}</p>
-        </div>
+        <h2>Categories</h2>
+        <p>{{ categories_count }}</p>
+    </div>
+    <div>
+        <h2>Contacts</h2>
+        <p>{{ contacts_count }}</p>
+    </div>
+    <div>
+        <h2>Messages</h2>
+        <p>{{ messages_count }}</p>
     </div>
 </div>
 {% endblock %}

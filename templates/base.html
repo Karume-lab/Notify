@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notify | {% block title %}{% endblock title %}</title>
-    {% include './dependancies/css.html' %}
-</head>
-<body>
-    {% include 'components/header.html' %}
-    <div>
-        {% include 'components/sidebar.html' %}
-        <div>
-            <div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Notify | {% block title %}{% endblock title %}</title>
+        {% include './dependancies/css.html' %}
+    </head>
+    <body class="flex flex-col min-h-screen">
+        {% include 'components/header.html' %}
+        <div class="flex flex-1">
+            {% include 'components/sidebar.html' %}
+            <main class="p-4 sm:ml-64 mt-14">
                 {% block body %}{% endblock body %}
-            </div>
-            {% include 'components/footer.html' %}
+            </main>
         </div>
-    </div>
-</body>
+        {% include 'components/footer.html' %}
+    </body>
 </html>
