@@ -1,11 +1,14 @@
 import os
+from django.shortcuts import render
 from django.views.generic import (
+    TemplateView,
     ListView,
     DetailView,
     CreateView,
     UpdateView,
     DeleteView,
 )
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from decouple import config
 import pandas as pd
@@ -19,17 +22,32 @@ at.initialize(AFRICASTALKING_USERNAME, AFRICASTALKING_API_KEY)
 SMS = at.SMS
 
 
-class CategoryListView(ListView):
+def home(request):
+    return render(request, "core/index.html")
+
+
+class DashboardView(LoginRequiredMixin, TemplateView):
+    template_name = "dashboard.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["categories_count"] = models.Category.objects.count()
+        context["contacts_count"] = models.Contact.objects.count()
+        context["messages_count"] = models.Message.objects.count()
+        return context
+
+
+class CategoryListView(LoginRequiredMixin, ListView):
     model = models.Category
     template_name = "categories/category_list.html"
 
 
-class CategoryDetailView(DetailView):
+class CategoryDetailView(LoginRequiredMixin, DetailView):
     model = models.Category
     template_name = "categories/category_detail.html"
 
 
-class CategoryCreateView(CreateView):
+class CategoryCreateView(LoginRequiredMixin, CreateView):
     model = models.Category
     form_class = forms.Category
     template_name = "categories/category_form.html"
@@ -63,60 +81,60 @@ class CategoryCreateView(CreateView):
         return response
 
 
-class CategoryUpdateView(UpdateView):
+class CategoryUpdateView(LoginRequiredMixin, UpdateView):
     model = models.Category
     form_class = forms.Category
     template_name = "categories/category_form.html"
     success_url = reverse_lazy("category-list")
 
 
-class CategoryDeleteView(DeleteView):
+class CategoryDeleteView(LoginRequiredMixin, DeleteView):
     model = models.Category
     template_name = "categories/category_confirm_delete.html"
     success_url = reverse_lazy("category-list")
 
 
-class ContactListView(ListView):
+class ContactListView(LoginRequiredMixin, ListView):
     model = models.Contact
     template_name = "contacts/contact_list.html"
 
 
-class ContactDetailView(DetailView):
+class ContactDetailView(LoginRequiredMixin, DetailView):
     model = models.Contact
     template_name = "contacts/contact_detail.html"
 
 
-class ContactCreateView(CreateView):
+class ContactCreateView(LoginRequiredMixin, CreateView):
     model = models.Contact
     form_class = forms.Contact
     template_name = "contacts/contact_form.html"
     success_url = reverse_lazy("contact-list")
 
 
-class ContactUpdateView(UpdateView):
+class ContactUpdateView(LoginRequiredMixin, UpdateView):
     model = models.Contact
     form_class = forms.Contact
     template_name = "contacts/contact_form.html"
     success_url = reverse_lazy("contact-list")
 
 
-class ContactDeleteView(DeleteView):
+class ContactDeleteView(LoginRequiredMixin, DeleteView):
     model = models.Contact
     template_name = "contacts/contact_confirm_delete.html"
     success_url = reverse_lazy("contact-list")
 
 
-class MessageListView(ListView):
+class MessageListView(LoginRequiredMixin, ListView):
     model = models.Message
     template_name = "messages/message_list.html"
 
 
-class MessageDetailView(DetailView):
+class MessageDetailView(LoginRequiredMixin, DetailView):
     model = models.Message
     template_name = "messages/message_detail.html"
 
 
-class MessageCreateView(CreateView):
+class MessageCreateView(LoginRequiredMixin, CreateView):
     model = models.Message
     form_class = forms.Message
     template_name = "messages/message_form.html"
@@ -138,14 +156,14 @@ class MessageCreateView(CreateView):
         return response
 
 
-class MessageUpdateView(UpdateView):
+class MessageUpdateView(LoginRequiredMixin, UpdateView):
     model = models.Message
     form_class = forms.Message
     template_name = "messages/message_form.html"
     success_url = reverse_lazy("message-list")
 
 
-class MessageDeleteView(DeleteView):
+class MessageDeleteView(LoginRequiredMixin, DeleteView):
     model = models.Message
     template_name = "messages/message_confirm_delete.html"
     success_url = reverse_lazy("message-list")
