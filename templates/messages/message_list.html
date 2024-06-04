@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 
-
-{% block title %} Categories {% endblock title %}
-
-
+{% block title %}Message List{% endblock %}
 
 {% block body %}
-    
-{% endblock body %}
+<h1>Messages</h1>
+<ul>
+    {% for message in object_list %}
+        <li><a href="{% url 'message-detail' message.pk %}">{{ message.content|truncatechars:30 }}</a></li>
+    {% endfor %}
+</ul>
+<a href="{% url 'message-create' %}">Create Message</a>
+{% endblock %}

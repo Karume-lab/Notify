@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-
-{% block title %} Category Detail {% endblock title %}
-
-
+{% block title %}Category Detail{% endblock %}
 
 {% block body %}
-    
-{% endblock body %}
+<h1>{{ object.name }}</h1>
+<p>{{ object.description }}</p>
+<a href="{% url 'category-update' object.pk %}">Edit</a>
+<a href="{% url 'category-delete' object.pk %}">Delete</a>
+{% endblock %}

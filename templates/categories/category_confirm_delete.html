@@ -1,8 +1,12 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
-{% block title %}Confirm Delete{% endblock title %}
-
+{% block title %}Delete Category{% endblock %}
 
 {% block body %}
-    
-{% endblock body %}
+<h1>Are you sure you want to delete "{{ object.name }}"?</h1>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+</form>
+<a href="{% url 'category-list' %}">No, go back</a>
+{% endblock %}

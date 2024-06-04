@@ -8,3 +8,13 @@
 {% block body %}
     
 {% endblock body %}
+{% extends 'base.html' %}
+
+{% block title %}Message Detail{% endblock %}
+
+{% block body %}
+<h1>Message Content</h1>
+<p>{{ object.content }}</p>
+<a href="{% url 'message-update' object.pk %}">Edit</a>
+<a href="{% url 'message-delete' object.pk %}">Delete</a>
+{% endblock %}
