@@ -157,6 +157,8 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+
 # or any other page
 ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"
 
