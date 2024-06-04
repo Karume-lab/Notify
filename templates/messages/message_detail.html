@@ -15,6 +15,6 @@
 {% block body %}
 <h1>Message Content</h1>
 <p>{{ object.content }}</p>
-<a href="{% url 'message-update' object.pk %}">Edit</a>
-<a href="{% url 'message-delete' object.pk %}">Delete</a>
+<a href="{% url 'core:message-update' object.pk %}">Edit</a>
+<a href="{% url 'core:message-delete' object.pk %}">Delete</a>
 {% endblock %}

@@ -8,5 +8,5 @@
     {% csrf_token %}
     <button type="submit">Yes, delete</button>
 </form>
-<a href="{% url 'category-list' %}">No, go back</a>
+<a href="{% url 'core:category-list' %}">No, go back</a>
 {% endblock %}

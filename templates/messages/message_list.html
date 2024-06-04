@@ -9,5 +9,5 @@
         <li><a href="{% url 'message-detail' message.pk %}">{{ message.content|truncatechars:30 }}</a></li>
     {% endfor %}
 </ul>
-<a href="{% url 'message-create' %}">Create Message</a>
+<a href="{% url 'core:message-create' %}">Create Message</a>
 {% endblock %}

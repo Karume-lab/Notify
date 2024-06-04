@@ -6,8 +6,8 @@
 <h1>Categories</h1>
 <ul>
     {% for category in object_list %}
-        <li><a href="{% url 'category-detail' category.pk %}">{{ category.name }}</a></li>
+        <li><a href="{% url 'core:category-detail' category.pk %}">{{ category.name }}</a></li>
     {% endfor %}
 </ul>
-<a href="{% url 'category-create' %}">Create Category</a>
+<a href="{% url 'core:category-create' %}">Create Category</a>
 {% endblock %}

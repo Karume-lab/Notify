@@ -5,6 +5,6 @@
 {% block body %}
 <h1>{{ object.first_name }} {{ object.last_name }}</h1>
 <p>Phone: {{ object.phone_number }}</p>
-<a href="{% url 'contact-update' object.pk %}">Edit</a>
-<a href="{% url 'contact-delete' object.pk %}">Delete</a>
+<a href="{% url 'core:contact-update' object.pk %}">Edit</a>
+<a href="{% url 'core:contact-delete' object.pk %}">Delete</a>
 {% endblock %}
