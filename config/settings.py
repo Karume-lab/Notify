@@ -157,12 +157,6 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-# django-allauth registraion settings
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-
-
 # or any other page
 ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"
 
