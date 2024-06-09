@@ -7,11 +7,20 @@
         {% include './dependancies/css.html' %}
     </head>
     <body class="flex flex-col min-h-screen">
-        {% include 'components/header.html' %}
-        {% include 'components/sidebar.html' %}
-        <main class="p-4 sm:ml-64 mt-14">
-            {% block body %}{% endblock body %}
-        </main>
-        {% include 'components/footer.html' %}
+        {% if request.user.is_authenticated %}
+            {% include 'components/header.html' %}
+            <div class="flex flex-1">
+                {% include 'components/sidebar.html' %}
+                <main class="flex-1 p-4 mt-14 sm:ml-64">
+                    {% block body %}{% endblock body %}
+                </main>
+            </div>
+            {% else %}
+            {% include 'components/header_.html' %}
+            <main class="flex-1 p-4 mt-14">
+                {% block body_ %}{% endblock body_ %}
+            </main>
+        {% endif %}
+    {% include 'components/footer.html' %}
     </body>
 </html>
