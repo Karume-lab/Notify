@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}Create or Update Message{% endblock %}
 
 {% block body %}
-<h1>{{ view.title }}</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-</form>
-<a href="{% url 'core:message-list' %}">Back to list</a>
+<div class="container mx-auto p-6">
+    <h1 class="text-2xl font-bold mb-4">{{ view.title }}</h1>
+    <form method="post" class="mx-auto bg-white p-8 rounded-lg shadow-md">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="flex justify-between items-center mt-6">
+            <a href="{% url 'core:category-list' %}" class="text-blue-500 hover:underline">Back to list</a>
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Send SMS</button>
+        </div>
+    </form>
+</div>
 {% endblock %}

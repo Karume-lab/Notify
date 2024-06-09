@@ -51,7 +51,7 @@ class CategoryCreateView(LoginRequiredMixin, CreateView):
     model = models.Category
     form_class = forms.Category
     template_name = "categories/category_form.html"
-    success_url = reverse_lazy("category-list")
+    success_url = reverse_lazy("core:category-list")
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -85,13 +85,13 @@ class CategoryUpdateView(LoginRequiredMixin, UpdateView):
     model = models.Category
     form_class = forms.Category
     template_name = "categories/category_form.html"
-    success_url = reverse_lazy("category-list")
+    success_url = reverse_lazy("core:category-list")
 
 
 class CategoryDeleteView(LoginRequiredMixin, DeleteView):
     model = models.Category
     template_name = "categories/category_confirm_delete.html"
-    success_url = reverse_lazy("category-list")
+    success_url = reverse_lazy("core:category-list")
 
 
 class ContactListView(LoginRequiredMixin, ListView):
@@ -108,20 +108,20 @@ class ContactCreateView(LoginRequiredMixin, CreateView):
     model = models.Contact
     form_class = forms.Contact
     template_name = "contacts/contact_form.html"
-    success_url = reverse_lazy("contact-list")
+    success_url = reverse_lazy("core:contact-list")
 
 
 class ContactUpdateView(LoginRequiredMixin, UpdateView):
     model = models.Contact
     form_class = forms.Contact
     template_name = "contacts/contact_form.html"
-    success_url = reverse_lazy("contact-list")
+    success_url = reverse_lazy("core:contact-list")
 
 
 class ContactDeleteView(LoginRequiredMixin, DeleteView):
     model = models.Contact
     template_name = "contacts/contact_confirm_delete.html"
-    success_url = reverse_lazy("contact-list")
+    success_url = reverse_lazy("core:contact-list")
 
 
 class MessageListView(LoginRequiredMixin, ListView):
@@ -138,7 +138,7 @@ class MessageCreateView(LoginRequiredMixin, CreateView):
     model = models.Message
     form_class = forms.Message
     template_name = "messages/message_form.html"
-    success_url = reverse_lazy("message-list")
+    success_url = reverse_lazy("core:message-list")
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -160,10 +160,10 @@ class MessageUpdateView(LoginRequiredMixin, UpdateView):
     model = models.Message
     form_class = forms.Message
     template_name = "messages/message_form.html"
-    success_url = reverse_lazy("message-list")
+    success_url = reverse_lazy("core:message-list")
 
 
 class MessageDeleteView(LoginRequiredMixin, DeleteView):
     model = models.Message
     template_name = "messages/message_confirm_delete.html"
-    success_url = reverse_lazy("message-list")
+    success_url = reverse_lazy("core:message-list")
