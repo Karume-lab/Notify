@@ -141,19 +141,19 @@ class MessageCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("core:message-list")
 
     def form_valid(self, form):
-        response = super().form_valid(form)
-        instance = form.instance
-        contacts = instance.category.contacts.all()
-        phone_numbers_list = [cc.contact.phone_number for cc in contacts]
+        instance = form.save(commit=False)
+        instance.sender = self.request.user
+        instance.save()
+        students = instance.category.contacts.all()
 
-        for phone_number in phone_numbers_list:
+        for student in students:
             try:
-                response = SMS.send(instance.content, [str(phone_number)])
+                response = SMS.send(instance.content, [str(student.contact.phone_number)])
                 print(response)
             except Exception as e:
                 print(f"Uh oh we have a problem: {e}")
 
-        return response
+        return super().form_valid(form)
 
 
 class MessageUpdateView(LoginRequiredMixin, UpdateView):
