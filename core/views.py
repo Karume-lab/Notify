@@ -12,6 +12,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from decouple import config
 import pandas as pd
+from datetime import timedelta
+from django.utils import timezone
 import africastalking as at
 from . import models
 from . import forms
@@ -34,6 +36,16 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         context["categories_count"] = models.Category.objects.count()
         context["contacts_count"] = models.Contact.objects.count()
         context["messages_count"] = models.Message.objects.count()
+
+        today = timezone.now().date()
+        start_of_week = today - timedelta(days=today.weekday())
+        end_of_week = start_of_week + timedelta(days=6)
+
+        current_week_messages = models.Message.objects.filter(
+            created_at__range=[start_of_week, end_of_week]
+        )
+        context["current_week_messages"] = current_week_messages
+
         return context
 
 
@@ -148,7 +160,9 @@ class MessageCreateView(LoginRequiredMixin, CreateView):
 
         for student in students:
             try:
-                response = SMS.send(instance.content, [str(student.contact.phone_number)])
+                response = SMS.send(
+                    instance.content, [str(student.contact.phone_number)]
+                )
                 print(response)
             except Exception as e:
                 print(f"Uh oh we have a problem: {e}")
