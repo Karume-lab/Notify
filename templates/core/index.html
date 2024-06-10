@@ -1,12 +1,45 @@
 {% extends 'base.html' %}
 
-
 {% block title %}
     Home
 {% endblock title %}
-    
-
 
 {% block body_ %}
-LANDING PAGE
-{% endblock body_ %}
+<!-- Hero Section -->
+<div class="bg-gradient-to-b from-indigo-900 to-indigo-700 text-white py-20">
+    <div class="container mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Streamline Student Communication</h1>
+        <p class="text-lg md:text-xl lg:text-2xl mb-6">Introducing the ultimate SMS solution for teachers - empowering you to effortlessly reach your students with just a few clicks.</p>
+        <a href="{% url 'account_login' %}" class="bg-white text-indigo-700 font-semibold py-3 px-8 rounded-full hover:bg-indigo-100">Get Started</a>
+    </div>
+</div>
+<!-- Features Section -->
+<div class="container mx-auto py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Summary Cards -->
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+            <span class="text-4xl text-indigo-700 mb-2 block">&#128202;</span>
+            <h3 class="text-xl font-semibold mb-2">Summary Cards</h3>
+            <p class="text-gray-600">Get a quick overview of your messaging activities, including the total number of categories, messages sent, and other relevant statistics.</p>
+        </div>
+        <!-- Category Management -->
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+            <span class="text-4xl text-indigo-700 mb-2 block">&#128202;</span>
+            <h3 class="text-xl font-semibold mb-2">Category Management</h3>
+            <p class="text-gray-600">Organize your recipients into easily manageable categories. View, add, edit, and delete categories with an intuitive table-based interface.</p>
+        </div>
+        <!-- Message Creation -->
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+            <span class="text-4xl text-indigo-700 mb-2 block">&#9993;</span>
+            <h3 class="text-xl font-semibold mb-2">Message Creation</h3>
+            <p class="text-gray-600">Compose and send new messages to your students with a single click. Our user-friendly message creation form ensures your communication is delivered seamlessly.</p>
+        </div>
+        <!-- Message History -->
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+            <span class="text-4xl text-indigo-700 mb-2 block">&#128221;</span>
+            <h3 class="text-xl font-semibold mb-2">Message History</h3>
+            <p class="text-gray-600">Keep track of your past messages, including details like content, recipient category, and timestamp. Conveniently delete or filter messages as needed.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
