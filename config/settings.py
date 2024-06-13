@@ -41,11 +41,13 @@ INSTALLED_APPS = [
     # THIRD PARTY APPS
     "crispy_forms",
     "crispy_bootstrap5",
+    "allauth_ui",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.google",
     "allauth.socialaccount.providers.facebook",
+    "widget_tweaks",
     "django_browser_reload",
     # LOCAL APPS
     "core",
