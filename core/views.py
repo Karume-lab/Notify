@@ -66,6 +66,7 @@ class CategoryCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("core:category-list")
 
     def form_valid(self, form):
+        form.instance.creator = self.request.user
         response = super().form_valid(form)
         instance = form.instance
         file_extension = os.path.splitext(instance.contacts_import_file.name)[1]
@@ -77,19 +78,27 @@ class CategoryCreateView(LoginRequiredMixin, CreateView):
         else:
             raise ValueError("Unsupported file format")
 
+        # Print the columns for debugging purposes
+        print(f"Columns in the uploaded file: {df.columns.tolist()}")
+
+        required_columns = ["First Name", "Sur Name", "Phone Number"]
+        if not all(col in df.columns for col in required_columns):
+            raise ValueError("The uploaded file is missing required columns.")
+
         for _, row in df.iterrows():
             try:
                 contact, created = models.Contact.objects.get_or_create(
-                    first_name=row["First Name"],
-                    last_name=row["Sur Name"],
-                    phone_number=f"+{row['Phone Number']}",
+                    first_name=row["First Name"].strip(),
+                    last_name=row["Sur Name"].strip(),
+                    phone_number=f"+{row['Phone Number']}".strip(),
                 )
                 models.CategoryContact.objects.get_or_create(
                     contact=contact,
                     category=instance,
                 )
             except Exception as e:
-                print(f"Error importing {row['Phone Number']} {e}")
+                print(f"Error importing {row.get('Phone Number', 'unknown')}: {e}")
+
         return response
 
 
