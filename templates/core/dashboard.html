@@ -42,7 +42,6 @@
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                             <g id="SVGRepo_iconCarrier">
-                                <title></title>
                                 <path d="M100,15a85,85,0,1,0,85,85A84.93,84.93,0,0,0,100,15Zm0,150a65,65,0,1,1,65-65A64.87,64.87,0,0,1,100,165Zm30-72.5H110v-20a10,10,0,0,0-20,0v20H70a10,10,0,0,0,0,20H90v20a10,10,0,0,0,20,0v-20h20a10,10,0,0,0,0-20Z"></path>
                             </g>
                         </svg>
@@ -137,22 +136,23 @@
         <div class="bg-white shadow-md rounded-lg">
             <h2 class="text-2xl font-semibold text-gray-900 mb-4 p-4 sm:p-6">Messages sent this Week</h2>
             <div class="overflow-x-auto">
+                {% if current_week_messages %}
                 <table class="w-full table-auto sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
                     <thead class="text-white bg-teal-400">
-                        <tr class="flex flex-col sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
-                            <th class="p-3 text-left">Content</th>
-                            <th class="p-3 text-left">Date Sent</th>
-                            <th class="p-3 text-left" width="110px">Category sent to</th>
-                            <th class="p-3 text-left" width="110px">Delete</th>
+                        <tr>
+                            <th class="p-3 text-left border border-gray-200">Content</th>
+                            <th class="p-3 text-left border border-gray-200">Date Sent</th>
+                            <th class="p-3 text-left border border-gray-200" width="110px">Category sent to</th>
+                            <th class="p-3 text-left border border-gray-200" width="110px">Delete</th>
                         </tr>
                     </thead>
-                    <tbody class="flex-1 sm:flex-none">
+                    <tbody>
                         {% for message in current_week_messages %}
-                        <tr class="flex sm:table-row mb-2 sm:mb-0">
+                        <tr class="bg-white">
                             <td class="border border-gray-200 p-3 truncate">{{ message.content|truncatechars:50 }}</td>
                             <td class="border border-gray-200 p-3 truncate">{{ message.created_at }}</td>
                             <td class="border border-gray-200 p-3 truncate">{{ message.category }}</td>
-                            <td>
+                            <td class="border border-gray-200 p-3">
                                 <div class="flex gap-5 justify-center items-center">
                                     <span class="hover:bg-teal-500 rounded-full p-2">
                                         <a href="{% url 'core:message-delete' message.pk %}">
@@ -239,6 +239,11 @@
                         {% endfor %}
                     </tbody>
                 </table>
+                {% else %}
+                <div class="bg-gray-100 p-4 rounded-lg text-center">
+                    <p class="text-gray-700">Messages you sent during this week appear here</p>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
