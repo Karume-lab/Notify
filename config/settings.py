@@ -26,11 +26,10 @@ SECRET_KEY = config("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DJANGO_DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -49,6 +48,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.facebook",
     "widget_tweaks",
     "django_browser_reload",
+    "slippers",
     # LOCAL APPS
     "core",
     "accounts",
@@ -166,3 +166,5 @@ ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"
 
 # redirects to profile page if not configured.
 LOGIN_REDIRECT_URL = "core:dashboard"
+
+ACCOUNT_EMAIL_VERIFICATION = "none"
